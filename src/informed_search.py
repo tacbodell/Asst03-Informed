@@ -18,7 +18,7 @@ while(True):
     else:
         print("Invalid input. Please type new or load.")
 
-print("Type: up, down, left, right, string, bfs, or quit.\n")
+print("Type: up, down, left, right, string, gbfs1, gbfs2, or quit.\n")
 
 while True:
     puzzle.display()   # or puzzle.display()
@@ -42,17 +42,11 @@ while True:
         puzzle.left()
     elif (command == "right" or command == "r"):
         puzzle.right()
-    elif (command == "bfs"):
-        solution = puzzle_search.breadth_first_search(puzzle.to_string())
+    elif (command == "gbfs1"):
+        solution = puzzle_search.misplaced_blocks_greedy_best_first_search(puzzle.to_string())
         print(f"Solution: {solution}")
-    elif (command == "dfs"):
-        command = input("Please enter a depth limit for your search: ")
-        try:
-            limit = int(command)
-            solution = puzzle_search.depth_first_search(puzzle.to_string(), limit)
-            print(f"Solution: {solution}")
-        except ValueError:
-            print("Limit must be an integer.")
-
+    elif (command == "gbfs2"):
+        solution = puzzle_search.sum_of_displacements_greedy_best_first_search(puzzle.to_string())
+        print(f"Solution: {solution}")
     else:
         print("Invalid command. Use up, down, left, right.\n")
